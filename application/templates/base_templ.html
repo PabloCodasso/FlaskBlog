@@ -1,0 +1,36 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Test server</title>
+      {% else %}
+      <title>FLASK testing server</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>
+            <a href="{{ url_for('start_page') }}">Home page</a>
+        </div>
+        <div>
+            <a href="{{ url_for('test_func') }}">Start test</a>
+        </div>
+        <div>Ovner page:
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('ret_name', username=current_user.username) }}">Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
