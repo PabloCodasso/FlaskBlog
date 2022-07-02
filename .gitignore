@@ -1,7 +1,0 @@
-venv/
-.idea/
-users.txt
-start_commands.txt
-migrations/
-__pycache__/
-.gitignore
